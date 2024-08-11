@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Captured Pages Database</title>
 </head>
 <body>
-    <h1>
-        here is a database page 
-    </h1>
+
+<h2>Captured Page Images</h2>
+<img id="uploadedImage" src="" alt="Captured Page">
+
+<script>
+    const imgData = new URLSearchParams(window.location.search).get('capturedImage');
+
+    if (imgData) {
+        // Save the image data in localStorage to persist across refreshes
+        localStorage.setItem('capturedImage', imgData);
+        document.getElementById('uploadedImage').src = imgData;
+    } else {
+        // Load from localStorage if present
+        const savedImage = localStorage.getItem('capturedImage');
+        if (savedImage) {
+            document.getElementById('uploadedImage').src = savedImage;
+        }
+    }
+</script>
 </body>
 </html>
